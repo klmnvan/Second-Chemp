@@ -21,6 +21,9 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
             bindingBlock.listBlock.setOnClickListener(){
                 listener.Click(block)
             }
+            bindingBlock.ButtonInBlock.setOnClickListener(){
+                listener.Order(block)
+            }
         }
     }
 
@@ -43,6 +46,7 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
     }
     interface Listener{
         fun Click(block: BlockModel)
+        fun Order(block: BlockModel)
     }
 
 }

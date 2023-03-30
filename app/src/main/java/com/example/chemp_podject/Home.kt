@@ -15,6 +15,7 @@ import com.example.chemp_podject.api.*
 import com.example.chemp_podject.databinding.ActivityHomeBinding
 import com.example.chemp_podject.databinding.ItemButtonBinding
 import com.example.chemp_podject.fragments.ItemListDialogFragment
+import com.example.chemp_podject.models.PolzovatModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,14 +24,16 @@ import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
+class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     AdapterCategory.Listener {
     private var binding: ActivityHomeBinding? = null
+    lateinit var person: PolzovatModel
     private val adapterNews = AdapterNews()
     private val adapterBlock = AdapterBlock(this)
     private val adapterCategory = AdapterCategory(this)
     private val adapterPoisk = AdapterPoisk(this)
-    private var categoryList : List<String>? = null
+    private var categoryList: List<String>? = null
+    private var listOrder: List<BlockModel> = ArrayList<BlockModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,21 +42,27 @@ class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
         setContentView(binding!!.root)
         getData()
         initSearch()
-        goActivity()/*
+        goActivity()
+        putPerson()/*
         val GestureDetector = Intent(this @Home, AlterMap::class.java)
         binding!!.LayoutMenuPolzovat.setOnClickListener(){
             val topScreen = Intent(this @Home, AlterMap::class.java)
         }*/
     }
 
-    private fun goActivity(){
-        binding!!.MenuIconPolzovat.setOnClickListener(){
+    fun putPerson() {
+        person = intent.getSerializableExtra("person") as PolzovatModel
+    }
+
+    private fun goActivity() {
+        binding!!.MenuIconPolzovat.setOnClickListener() {
             startActivity(Intent(this@Home, AlterMap::class.java))
         }
     }
-    private fun initSearch(){
-        binding!!.iconLupa.setOnClickListener(){
-            with(binding!!){
+
+    private fun initSearch() {
+        binding!!.iconLupa.setOnClickListener() {
+            with(binding!!) {
                 buttonKrestic.visibility = View.VISIBLE
                 buttonOtmena.visibility = View.VISIBLE
                 Menu.visibility = View.GONE
@@ -61,8 +70,8 @@ class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
                 Polosa.visibility = View.VISIBLE
             }
         }
-        binding!!.buttonOtmena.setOnClickListener(){
-            with(binding!!){
+        binding!!.buttonOtmena.setOnClickListener() {
+            with(binding!!) {
                 buttonKrestic.visibility = View.GONE
                 buttonOtmena.visibility = View.GONE
                 Menu.visibility = View.VISIBLE
@@ -71,7 +80,7 @@ class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
                 strokePoisk.clearFocus()
             }
         }
-        binding!!.buttonKrestic.setOnClickListener(){
+        binding!!.buttonKrestic.setOnClickListener() {
             binding!!.strokePoisk.text = binding!!.strokePoisk.text.dropLast(1) as Editable?
             binding!!.strokePoisk.setSelection(binding!!.strokePoisk.length())
         }/*
@@ -79,11 +88,15 @@ class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
             bindingItemCategory.ButtonCatalog.background = getDrawable(R.drawable.button_home_blue_style)
         }*/
         //
+        binding!!.buttonGoBasket.setOnClickListener(){
+            startActivity(Intent(this@Home, Basket::class.java))
+        }
 
     }
+
     private fun init(data: List<NewsModel>) {
         with(binding!!) {
-            listNews.layoutManager = GridLayoutManager(this@Home,data.size)
+            listNews.layoutManager = GridLayoutManager(this@Home, data.size)
             listNews.adapter = adapterNews
 
             val listCharacter: List<NewsModel> = data
@@ -94,16 +107,17 @@ class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
             }
         }
     }
+
     /*block: List<BlockModel>, blockpoisk: List<BlockModel>*/
     private fun initBlock(block: List<BlockModel>) {
         with(binding!!) {
-            listBlock.layoutManager = GridLayoutManager(this@Home,1)
+            listBlock.layoutManager = GridLayoutManager(this@Home, 1)
             listBlock.adapter = adapterBlock
             listPoisk.layoutManager = GridLayoutManager(this@Home, 1)
             listPoisk.adapter = adapterPoisk
             val listBlock: List<BlockModel> = block
-            if(listBlock.isNotEmpty()){
-                for (element in listBlock){
+            if (listBlock.isNotEmpty()) {
+                for (element in listBlock) {
                     adapterBlock.addBlock(element)
                     /*adapterPoisk.addPoisk(element)*/
                 }
@@ -115,16 +129,18 @@ class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
             }*/
         }
     }
-    private  fun initPoisk(blockPoisk: List<BlockModel>, enteredString: String){
-        with(binding!!){
+
+    private fun initPoisk(blockPoisk: List<BlockModel>, enteredString: String) {
+        with(binding!!) {
             listPoisk.layoutManager = GridLayoutManager(this@Home, 1)
             listPoisk.adapter = adapterPoisk
             Log.d(TAG, blockPoisk.size.toString())
-            if (enteredString.isNotEmpty()){
-                val newList = blockPoisk.filter { it.name.contains(enteredString, ignoreCase = true) }
+            if (enteredString.isNotEmpty()) {
+                val newList =
+                    blockPoisk.filter { it.name.contains(enteredString, ignoreCase = true) }
                 Log.d(TAG, newList.toString())
-                if(newList.isNotEmpty()){
-                    for(element in newList){
+                if (newList.isNotEmpty()) {
+                    for (element in newList) {
                         adapterPoisk.addPoisk(element)
                         /*if(blockPoisk.filter { it.name.contains(enteredString) }.toString() =) {
                             adapterPoisk.addPoisk(element)
@@ -134,20 +150,22 @@ class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
             }
         }
     }
-  lateinit var allBlock: List<BlockModel>
+
+    lateinit var allBlock: List<BlockModel>
     private fun initCategory(category: List<BlockModel>) {
         with(binding!!) {
             categoryList = category.map { it.category }.toSet().toList()
-            listCategory.layoutManager = GridLayoutManager(this@Home,category.size)
+            listCategory.layoutManager = GridLayoutManager(this@Home, category.size)
             listCategory.adapter = adapterCategory
 
-            if(categoryList!!.isNotEmpty()){
-                for (element in categoryList!!){
+            if (categoryList!!.isNotEmpty()) {
+                for (element in categoryList!!) {
                     adapterCategory.addCategogory(element)
                 }
             }
         }
     }
+
     private fun getData() {
         val api = Retrofit.Builder()
             .baseUrl("https://medic.madskill.ru")
@@ -172,7 +190,7 @@ class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
                 if (response2.isSuccessful) {
                     val data = response2.body()!!
                     allBlock = data
-                   runOnUiThread { initBlock(allBlock) }
+                    runOnUiThread { initBlock(allBlock) }
                     runOnUiThread { initCategory(data) }
                     /*runOnUiThread { initPoisk(data) }*/
                     Log.d(TAG, data.toString())
@@ -232,7 +250,7 @@ class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
         //по введенной строке. Что нам обязательно нужно: передавать в функцию (fun) введенную строку
         //и массив данных из getBlock() и уже в ней мы будем фильтровать массив по вводу, при этом
         //фильтрованный массив - уже новая переменная, и выводить этот новый массив с помощью адаптера
-        binding!!.strokePoisk.addTextChangedListener(object: TextWatcher {
+        binding!!.strokePoisk.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
@@ -265,12 +283,19 @@ class Home : AppCompatActivity(),AdapterBlock.Listener, AdapterPoisk.Listener,
         val bundle = Bundle()
         bundle.putSerializable("key", block)
         itemListDialogFragment.arguments = bundle
-        itemListDialogFragment.show(supportFragmentManager,"pop")
+        itemListDialogFragment.show(supportFragmentManager, "pop")
+    }
+
+    var intentBasket: Intent? = null
+    override fun Order(block: BlockModel) {
+        intentBasket = Intent(this@Home, Basket::class.java)
+        listOrder += block
+        intentBasket!!.putExtra("order", listOrder.toList() as java.io.Serializable)
     }
 
     override fun Click(category: String, position: Int) {
         adapterBlock.blockModelList.clear()
-       var allBlockSort: List<BlockModel> = allBlock.filter { it.category ==category }
+        var allBlockSort: List<BlockModel> = allBlock.filter { it.category == category }
         initBlock(allBlockSort)
     }
 

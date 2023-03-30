@@ -114,8 +114,10 @@ CreateMap : AppCompatActivity() {
             binding!!.buttonCreate.background = getDrawable(R.drawable.shape_button2)
             binding!!.buttonCreate.setOnClickListener{
                 person = PolzovatModel(binding.inputTextName.text.toString(),binding.inputTextName.text.toString(),binding.inputTextName.text.toString(),binding.inputTextName.text.toString(),binding.inputTextName.text.toString())
+                val intent = Intent(this@CreateMap, Home::class.java)
+                intent.putExtra("person", person)
                 Log.d(TAG, binding.inputTextName.toString())
-                startActivity(Intent(this@CreateMap, Home::class.java))
+                startActivity(intent)
             }
         }
     }
