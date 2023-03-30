@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CodFromEmail"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:id="@+id/strelka"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/shape_button_stroke"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/strelka" />
+
+    <TextView
+        android:id="@+id/text_nad_codom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="Введите код из E-mail"
+        android:fontFamily="@font/pro_display"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_nad_codom">
+
+
+        <EditText
+            android:id="@+id/input_number_1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/shape_button_stroke"
+            android:ems="10"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/input_number_2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/shape_button_stroke"
+            android:ems="10"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/input_number_3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/shape_button_stroke"
+            android:ems="10"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/input_number_4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/shape_button_stroke"
+            android:ems="10"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/otchet_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textSize="15dp"
+        android:fontFamily="@font/pro_display"
+        android:text="Отправить код повторно можно \nбудет через 42 секунд"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

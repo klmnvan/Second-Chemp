@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#99000000">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/fragment_block_style">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textMakeOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/pro_display"
+                android:text="Дата и время"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/pro_display"
+                android:text="Выберите дату"
+                android:textColor="#7E7E9A"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textMakeOrder" />
+
+            <TableRow
+                android:id="@+id/tabDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textDate"
+                android:background="@drawable/map_input_style_null">
+                <TextView
+                    android:id="@+id/putTextDateCalendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="14dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:entries="@array/gender"
+                    android:gravity="center|start"
+                    android:text="Тицкий Эдуард"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"></TextView>
+
+                <ImageView
+                    android:id="@+id/buttonStrelkaVniz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="20dp"
+                    app:srcCompat="@drawable/icon_strelka_vniz" />
+
+            </TableRow>
+
+           <!-- <EditText
+                android:id="@+id/inputTextDate"
+                style="?buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/map_input_style_null"
+                android:fontFamily="@font/pro_display"
+                android:gravity="start|center"
+                android:inputType="text"
+                android:padding="15dp"/>-->
+
+            <LinearLayout
+                android:id="@+id/linDatePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tabDate">
+
+                <CalendarView
+                    android:id="@+id/datePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"></CalendarView>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/textTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="18dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/pro_display"
+                android:text="Выберите время"
+                android:textColor="#7E7E9A"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linDatePicker" />
+
+            <LinearLayout
+                android:id="@+id/linHor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textTime">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textTime10"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_home_white_style"
+                        android:fontFamily="@font/pro_display"
+                        android:gravity="center"
+                        android:padding="14dp"
+                        android:text="10:00"
+                        android:textColor="@color/bigrey"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/textTime16"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/button_home_white_style"
+                        android:fontFamily="@font/pro_display"
+                        android:gravity="center"
+                        android:padding="14dp"
+                        android:text="16:00"
+                        android:textColor="@color/bigrey"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textTime13"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_home_white_style"
+                        android:fontFamily="@font/pro_display"
+                        android:gravity="center"
+                        android:padding="14dp"
+                        android:text="13:00"
+                        android:textColor="@color/bigrey"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/textTime18"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/button_home_white_style"
+                        android:fontFamily="@font/pro_display"
+                        android:gravity="center"
+                        android:padding="14dp"
+                        android:text="18:00"
+                        android:textColor="@color/bigrey"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textTime14"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_home_white_style"
+                        android:fontFamily="@font/pro_display"
+                        android:gravity="center"
+                        android:padding="14dp"
+                        android:text="14:00"
+                        android:textColor="@color/bigrey"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/textTime19"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/button_home_white_style"
+                        android:fontFamily="@font/pro_display"
+                        android:gravity="center"
+                        android:padding="14dp"
+                        android:text="19:00"
+                        android:textColor="@color/bigrey"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textTime15"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_home_white_style"
+                        android:fontFamily="@font/pro_display"
+                        android:gravity="center"
+                        android:padding="14dp"
+                        android:text="15:00"
+                        android:textColor="@color/bigrey"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/buttonConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/shape_button"
+                android:fontFamily="@font/pro_display"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Подтвердить"
+                android:textColor="@color/white"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linHor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

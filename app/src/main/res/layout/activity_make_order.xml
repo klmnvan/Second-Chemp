@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MakeOrder"
+    android:background="@color/white">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/buttonBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_home_white_style"
+                android:padding="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_back" />
+
+            <TextView
+                android:id="@+id/textMakeOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/pro_display"
+                android:text="Оформление заказа"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonBack" />
+
+
+            <TableRow
+                android:id="@+id/rowAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textMakeOrder">
+
+                <TextView
+                    android:id="@+id/textAdress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pro_display"
+                    android:text="Адрес"
+                    android:textColor="#7E7E9A"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/textAdress1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pro_display"
+                    android:text=" *"
+                    android:textColor="@color/red"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <EditText
+                android:id="@+id/inputTextAddress"
+                style="?buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/map_input_style_null"
+                android:fontFamily="@font/pro_display"
+                android:gravity="start|center"
+                android:hint="Введите ваш адрес"
+                android:inputType="text"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowAddress" />
+
+            <TableRow
+                android:id="@+id/rowDateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputTextAddress">
+
+                <TextView
+                    android:id="@+id/textDateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pro_display"
+                    android:text="Дата и время"
+                    android:textColor="#7E7E9A"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/textDateTime1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pro_display"
+                    android:text=" *"
+                    android:textColor="@color/red"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <EditText
+                android:id="@+id/inputTextDateTime"
+                style="?buttonBarButtonStyle"
+                android:focusable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/map_input_style_null"
+                android:fontFamily="@font/pro_display"
+                android:gravity="start|center"
+                android:hint="Выберите дату и время"
+                android:inputType="datetime"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowDateTime" />
+
+            <TableRow
+                android:id="@+id/rowWhoAnalizs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputTextDateTime">
+
+                <TextView
+                    android:id="@+id/textWhoAnalizs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pro_display"
+                    android:text="Кто будет сдавать анализы?"
+                    android:textColor="#7E7E9A"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/textWhoAnalizs1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pro_display"
+                    android:text=" *"
+                    android:textColor="@color/red"
+                    android:textSize="14dp" />
+            </TableRow>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/contPacient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowWhoAnalizs"
+                android:background="@drawable/shape_button_stroke">
+
+                <TableRow
+                    android:id="@+id/linPacient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TableRow
+                        android:id="@+id/rowPacient"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="@integer/material_motion_duration_long_1"
+                        android:background="@drawable/map_input_style_null">
+
+                        <ImageView
+                            android:id="@+id/genderImage"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="12dp"
+                            app:srcCompat="@drawable/icon_man" />
+
+                        <TextView
+                            android:id="@+id/spinnerPacient"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:entries="@array/gender"
+                            android:gravity="center|start"
+                            android:text="Тицкий Эдуард"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"></TextView>
+
+                        <ImageView
+                            android:id="@+id/buttonStrelkaVniz"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginVertical="20dp"
+                            android:layout_marginEnd="20dp"
+                            app:srcCompat="@drawable/icon_strelka_vniz" />
+                    </TableRow>
+
+                    <ImageView
+                        android:id="@+id/imageKrestic"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/icon_krestic_noback" />
+                </TableRow>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/buttonAddPacient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_style_blue_stroke"
+                android:fontFamily="@font/pro_display"
+                android:gravity="center"
+                android:text="Добавить еще пациента"
+                android:textColor="#1A6FEE"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contPacient" />
+
+            <TableRow
+                android:id="@+id/rowPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonAddPacient">
+
+                <TextView
+                    android:id="@+id/textPhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pro_display"
+                    android:text="Телефон"
+                    android:textColor="#7E7E9A"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/textPhoneNumber1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pro_display"
+                    android:text=" *"
+                    android:textColor="@color/red"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <EditText
+                android:id="@+id/inputTextPhoneNumber"
+                style="?buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/map_input_style_null"
+                android:fontFamily="@font/pro_display"
+                android:gravity="start|center"
+                android:hint="Введите ваш номер"
+                android:inputType="phone"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowPhoneNumber" />
+
+            <TableRow
+                android:id="@+id/rowKomment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputTextPhoneNumber">
+
+                <TextView
+                    android:id="@+id/textKomment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pro_display"
+                    android:text="Комментарий"
+                    android:textColor="#7E7E9A"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:id="@+id/t"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center|end"
+                    app:srcCompat="@drawable/icon_voice" />
+
+            </TableRow>
+
+            <EditText
+                android:id="@+id/inputTextWishes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/map_input_style_null"
+                android:fontFamily="@font/pro_display"
+                android:gravity="start"
+                android:hint="Можете оставить свои пожелания"
+                android:inputType="textMultiLine"
+                android:minHeight="128dp"
+                android:padding="15dp"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowKomment" />
+
+            <TableRow
+                android:id="@+id/rowOplata"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/inputTextWishes"
+                tools:layout_editor_absoluteX="20dp">
+
+                <TextView
+                    android:id="@+id/textOplata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pro_display"
+                    android:text="Оплата Apple Pay"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/icon_back_invert" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/rowPromocode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/rowOplata"
+                tools:layout_editor_absoluteX="20dp">
+
+                <TextView
+                    android:id="@+id/textPromocode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pro_display"
+                    android:text="Промокод"
+                    android:textColor="#939396"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/image2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/icon_back_invert" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/rowPrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/rowPromocode"
+                tools:layout_editor_absoluteX="20dp">
+
+                <TextView
+                    android:id="@+id/textCountAnaliz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pro_display"
+                    android:text="1 анализ"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pro_display"
+                    android:text="690 P"
+                    android:textColor="#939396"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+            </TableRow>
+
+            <TextView
+                android:id="@+id/buttonOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/shape_button"
+                android:fontFamily="@font/pro_display"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Заказать"
+                android:textColor="@color/white"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowPrice"
+                tools:layout_editor_absoluteX="20dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
