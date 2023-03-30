@@ -22,9 +22,7 @@ class Basket : AppCompatActivity() {
 
     fun putPerson ()
     {
-        var bundle = Bundle()
-        bundle.get("order") as PolzovatModel
-        //listOrder = intent.getSerializableExtra("order") as List<BlockModel>
+        listOrder = intent.getSerializableExtra("order") as List<BlockModel>
         val listCharacter: List<BlockModel> = listOrder
         if (listCharacter.isNotEmpty()) {
             for (element in listCharacter) {
