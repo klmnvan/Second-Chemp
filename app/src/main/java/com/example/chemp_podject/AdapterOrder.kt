@@ -5,21 +5,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chemp_podject.api.BlockModel
+import com.example.chemp_podject.api.ModelBasket
 import com.example.chemp_podject.databinding.ItemBasketBinding
 
 class AdapterOrder (private val listener: Basket): RecyclerView.Adapter<AdapterOrder.OrderHolder>() {
-    val orderList = ArrayList<BlockModel>()
-    var countOrder: Int = 0
+    val orderList = ArrayList<ModelBasket>()
 
     class OrderHolder(item: View): RecyclerView.ViewHolder(item){
         private var bindingBasket = ItemBasketBinding.bind(item)
 
-        fun bind(order: BlockModel, listener: Basket){
-            bindingBasket.textName.text = order.name
-            bindingBasket.textPrice.text = order.price
+        fun bind(modelBasket: ModelBasket, listener: Basket){
+            bindingBasket.textName.text = modelBasket.blockModel.name
+            bindingBasket.textPrice.text = modelBasket.blockModel.price
             bindingBasket.buttonPlus.setOnClickListener(){
-               listener
+                modelBasket.count++
+                bindingBasket.textPacient.text = modelBasket.count.toString() + " пациент(а)"
+                listener.CountOrder(modelBasket.blockModel)
             }
+            bindingBasket.buttonMinus.setOnClickListener(){
+                modelBasket.count--
+                bindingBasket.textPacient.text = modelBasket.count.toString() + " пациент(а)"
+                listener.CountOrder(modelBasket.blockModel)
+            }
+
         }
 
     }
@@ -36,13 +44,15 @@ class AdapterOrder (private val listener: Basket): RecyclerView.Adapter<AdapterO
         return orderList.size
     }
 
-    fun addOrder(order: BlockModel)
+    fun addOrder(modelBasket: ModelBasket)
     {
-        orderList.add(order)
+        orderList.add(modelBasket)
         notifyDataSetChanged()
     }
 
     interface Order{
-        fun CountOrder(blockModel: BlockModel)
+
+        fun CountOrder(blockModel: BlockModel){
+        }
     }
 }

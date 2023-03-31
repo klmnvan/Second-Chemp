@@ -93,7 +93,7 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         }*/
         //
         binding!!.buttonGoBasket.setOnClickListener(){
-            startActivity(Intent(this@Home, Basket::class.java))
+            startActivity(intentBasket)
         }
 
     }
@@ -294,7 +294,7 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     override fun Order(block: BlockModel) {
         intentBasket = Intent(this@Home, Basket::class.java)
         Home.listOrder += block
-    /*   // intentBasket!!.putExtra("order", listOrder as java.io.Serializable)*/
+        intentBasket!!.putExtra("order", listOrder as java.io.Serializable)
     }
 
     override fun Click(category: String, position: Int) {
