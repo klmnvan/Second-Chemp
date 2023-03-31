@@ -1,21 +1,25 @@
-package com.example.chemp_podject.api
+package com.example.chemp_podject
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.chemp_podject.R
+import com.example.chemp_podject.api.BlockModel
 import com.example.chemp_podject.databinding.ItemBasketBinding
 
-class AdapterOrder: RecyclerView.Adapter<AdapterOrder.OrderHolder>() {
+class AdapterOrder (private val listener: Basket): RecyclerView.Adapter<AdapterOrder.OrderHolder>() {
     val orderList = ArrayList<BlockModel>()
+    var countOrder: Int = 0
 
     class OrderHolder(item: View): RecyclerView.ViewHolder(item){
         private var bindingBasket = ItemBasketBinding.bind(item)
 
-        fun bind(order: BlockModel){
+        fun bind(order: BlockModel, listener: Basket){
             bindingBasket.textName.text = order.name
             bindingBasket.textPrice.text = order.price
+            bindingBasket.buttonPlus.setOnClickListener(){
+               listener
+            }
         }
 
     }
@@ -25,7 +29,7 @@ class AdapterOrder: RecyclerView.Adapter<AdapterOrder.OrderHolder>() {
     }
 
     override fun onBindViewHolder(holder: OrderHolder, position: Int) {
-        holder.bind(orderList[position])
+        holder.bind(orderList[position], listener)
     }
 
     override fun getItemCount(): Int {
@@ -36,5 +40,9 @@ class AdapterOrder: RecyclerView.Adapter<AdapterOrder.OrderHolder>() {
     {
         orderList.add(order)
         notifyDataSetChanged()
+    }
+
+    interface Order{
+        fun CountOrder(blockModel: BlockModel)
     }
 }
