@@ -1,7 +1,9 @@
 package com.example.chemp_podject
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import com.example.chemp_podject.api.AdapterOrder
 import com.example.chemp_podject.api.BlockModel
 import com.example.chemp_podject.api.NewsModel
@@ -12,6 +14,7 @@ class Basket : AppCompatActivity() {
     lateinit var binding: ActivityBasketBinding
     lateinit var listOrder: List<BlockModel>
     var adapterOrder = AdapterOrder()
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_basket)
@@ -20,9 +23,10 @@ class Basket : AppCompatActivity() {
         putPerson ()
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun putPerson ()
     {
-        listOrder = intent.getSerializableExtra("order") as List<BlockModel>
+        listOrder = intent.getParcelableArrayListExtra("order",BlockModel::class.java)!!
         val listCharacter: List<BlockModel> = listOrder
         if (listCharacter.isNotEmpty()) {
             for (element in listCharacter) {
