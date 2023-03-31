@@ -1,5 +1,6 @@
 package com.example.chemp_podject.api
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
 
     class BlockHolder(item: View) : RecyclerView.ViewHolder(item){
         private var bindingBlock = ItemBlockBinding.bind(item)
+        @SuppressLint("ResourceAsColor")
         fun bind(block: BlockModel, listener: Listener)
         {
             bindingBlock.TextNameBlock.text = block.name
@@ -22,6 +24,9 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
                 listener.Click(block)
             }
             bindingBlock.ButtonInBlock.setOnClickListener(){
+                //bindingBlock.ButtonInBlock.isClickable = false
+                bindingBlock.ButtonInBlock.background = bindingBlock.root.context.getDrawable(R.drawable.button_home_white_style)
+                bindingBlock.ButtonInBlock.setTextColor(R.color.blue_button)
                 listener.Order(block)
             }
         }

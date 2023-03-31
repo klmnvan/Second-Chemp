@@ -33,8 +33,12 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     private val adapterCategory = AdapterCategory(this)
     private val adapterPoisk = AdapterPoisk(this)
     private var categoryList: List<String>? = null
-    private var listOrder: List<BlockModel> = ArrayList<BlockModel>()
+    public  var listOrder: List<BlockModel> = ArrayList<BlockModel>()
 
+    object Home
+    {
+        var listOrder: List<BlockModel> = ArrayList<BlockModel>()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -289,8 +293,8 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     var intentBasket: Intent? = null
     override fun Order(block: BlockModel) {
         intentBasket = Intent(this@Home, Basket::class.java)
-        listOrder += block
-        intentBasket!!.putExtra("order", listOrder as java.io.Serializable)
+        Home.listOrder += block
+    /*   // intentBasket!!.putExtra("order", listOrder as java.io.Serializable)*/
     }
 
     override fun Click(category: String, position: Int) {
