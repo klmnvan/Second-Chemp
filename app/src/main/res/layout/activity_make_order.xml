@@ -78,6 +78,7 @@
             <EditText
                 android:id="@+id/inputTextAddress"
                 style="?buttonBarButtonStyle"
+                android:focusable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -165,16 +166,59 @@
                     android:textColor="@color/red"
                     android:textSize="14dp" />
             </TableRow>
+
+            <TableRow
+                android:id="@+id/rowPacient1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="@integer/material_motion_duration_long_1"
+                android:background="@drawable/map_input_style_null"
+                app:layout_constraintTop_toBottomOf="@+id/rowWhoAnalizs">
+
+                <ImageView
+                    android:id="@+id/genderImage"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="12dp"
+                    app:srcCompat="@drawable/icon_man" />
+
+                <TextView
+                    android:id="@+id/textPacient"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:entries="@array/gender"
+                    android:gravity="center|start"
+                    android:text="Тицкий Эдуард"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"></TextView>
+
+                <ImageView
+                    android:id="@+id/buttonStrelkaVniz"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginEnd="20dp"
+                    app:srcCompat="@drawable/icon_strelka_vniz" />
+            </TableRow>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/contPacient"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rowWhoAnalizs"
+                app:layout_constraintTop_toBottomOf="@+id/rowPacient1"
                 android:background="@drawable/shape_button_stroke">
+
 
                 <TableRow
                     android:id="@+id/linPacient"
@@ -195,7 +239,7 @@
                         android:background="@drawable/map_input_style_null">
 
                         <ImageView
-                            android:id="@+id/genderImage"
+                            android:id="@+id/genderImageRV"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
@@ -203,7 +247,7 @@
                             app:srcCompat="@drawable/icon_man" />
 
                         <TextView
-                            android:id="@+id/spinnerPacient"
+                            android:id="@+id/textPacientRV"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
@@ -215,7 +259,7 @@
                             android:textSize="16dp"></TextView>
 
                         <ImageView
-                            android:id="@+id/buttonStrelkaVniz"
+                            android:id="@+id/buttonStrelkaVniz1"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginVertical="20dp"

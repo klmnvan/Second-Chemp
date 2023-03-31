@@ -1,5 +1,6 @@
 package com.example.chemp_podject
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +29,7 @@ class MakeOrder : AppCompatActivity(), ItemListDialogFragmentAddress.Listener {
         }
 
     }
-
+    val itemListDialogFragment = ItemListDialogFragmentAddress(this@MakeOrder)
     fun init(){
         with(binding){
             /*spinnerPacient.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -47,7 +48,6 @@ class MakeOrder : AppCompatActivity(), ItemListDialogFragmentAddress.Listener {
 
             }*/
             inputTextAddress.setOnClickListener(){
-                val itemListDialogFragment = ItemListDialogFragmentAddress(this@MakeOrder)
                 itemListDialogFragment.show(supportFragmentManager, "StartAddressFrag")
             }
             inputTextDateTime.setOnClickListener(){
@@ -107,5 +107,8 @@ class MakeOrder : AppCompatActivity(), ItemListDialogFragmentAddress.Listener {
     override fun GetData(address: AddressModel) {
         addressThis = address
         binding.inputTextAddress.setText(addressThis.address + " кв." + addressThis.kvartira)
+        /*itemListDialogFragment.onDestroy()*/
+        /*itemListDialogFragment.onStop()*/
+        itemListDialogFragment.dismiss()
     }
 }

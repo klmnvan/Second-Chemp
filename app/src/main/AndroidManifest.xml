@@ -23,7 +23,7 @@
             android:name=".Input_and_register"
             android:exported="false" />
         <activity
-            android:name=".MakeOrder"
+            android:name=".CreateMap"
             android:exported="false" />
         <activity
             android:name=".on_board1"
@@ -63,7 +63,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CreateMap"
+            android:name=".MakeOrder"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
