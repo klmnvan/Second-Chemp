@@ -5,6 +5,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.chemp_podject.Home
 import com.example.chemp_podject.api.BlockModel
 import com.example.chemp_podject.databinding.ItemFragmentBlockBinding
 
@@ -33,6 +34,9 @@ class ItemListDialogFragment : BottomSheetDialogFragment() {
             textAllBiomaterial.text = block.bio
             textAllResults.text = block.time_result
             buttonDobavit.text = "Добавить за " + block.price + " ₽"
+        }
+        binding.buttonDobavit.setOnClickListener(){
+            Home.Home.listOrder += block
         }
     }
 }

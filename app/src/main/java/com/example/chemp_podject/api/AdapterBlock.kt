@@ -26,13 +26,6 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
             bindingBlock.listBlock.setOnClickListener(){
                 listener.Click(block)
             }
-            if(Home.Home.listOrder.contains(block))
-            {
-                bool = false
-            }
-            else{
-                bool = true
-            }
             bindingBlock.ButtonInBlock.setOnClickListener(){
                 if(bool)
                 {

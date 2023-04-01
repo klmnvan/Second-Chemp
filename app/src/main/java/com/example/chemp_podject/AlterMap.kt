@@ -1,5 +1,6 @@
 package com.example.chemp_podject
 
+import Person
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -13,11 +14,14 @@ import android.widget.TextView
 import com.example.chemp_podject.databinding.ActivityAlterMapBinding
 import com.example.chemp_podject.databinding.ActivityCreateMapBinding
 import com.example.chemp_podject.databinding.ActivityHomeBinding
+import com.example.chemp_podject.models.PolzovatModel
 import org.w3c.dom.Text
 
 class AlterMap : AppCompatActivity() {
     lateinit var binding: ActivityAlterMapBinding
     var index: Int? = null
+    lateinit var gender: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alter_map)
@@ -41,6 +45,12 @@ class AlterMap : AppCompatActivity() {
                 if(index != 0){
                     binding.spinnerGender.background = getDrawable(R.drawable.map_input_style)
                 }
+                if(index == 1){
+                    gender = "м"
+                }
+                if(index == 2){
+                    gender = "ж"
+                }
                 TextChecked()
             }
 
@@ -48,6 +58,7 @@ class AlterMap : AppCompatActivity() {
             }
 
         }
+        Proverka()
         init()
         goActivity()
     }
@@ -55,6 +66,27 @@ class AlterMap : AppCompatActivity() {
     private fun goActivity(){
         binding!!.MenuIconAnalizs.setOnClickListener(){
             startActivity(Intent(this@AlterMap, Home::class.java))
+        }
+    }
+
+    fun Proverka(){
+        if(Person.person != null){
+            var index = 0
+            binding.inputTextF.setText(Person.person!!.F)
+            binding.inputTextF.background = getDrawable(R.drawable.map_input_style)
+            binding.inputTextI.setText(Person.person!!.I)
+            binding.inputTextI.background = getDrawable(R.drawable.map_input_style)
+            binding.inputTextO.setText(Person.person!!.O)
+            binding.inputTextO.background = getDrawable(R.drawable.map_input_style)
+            binding.inputTextBirthday.setText(Person.person!!.Birthday)
+            binding.inputTextBirthday.background = getDrawable(R.drawable.map_input_style)
+            if(Person.person!!.Gender == "м"){
+                index = 1
+            }
+            if(Person.person!!.Gender == "ж"){
+                index = 2
+            }
+            binding.spinnerGender.setSelection(index)
         }
     }
 
@@ -149,6 +181,8 @@ class AlterMap : AppCompatActivity() {
             && binding!!.inputTextF.text.isNotEmpty() && binding!!.inputTextBirthday.text.isNotEmpty() && index != 0){
             binding!!.buttonSave.background = getDrawable(R.drawable.shape_button2)
             binding!!.buttonSave.setOnClickListener{
+                Person.person = PolzovatModel(binding.inputTextF.toString(), binding.inputTextI.toString(),binding.inputTextO.toString(),
+                binding.inputTextBirthday.toString(), gender)
                 startActivity(Intent(this@AlterMap, Home::class.java))
             }
         }

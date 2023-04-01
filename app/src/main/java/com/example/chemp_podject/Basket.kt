@@ -1,6 +1,7 @@
 package com.example.chemp_podject
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +24,9 @@ class Basket : AppCompatActivity(), AdapterOrder.Order {
         binding = ActivityBasketBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putPerson()
+        binding.buttonOrder.setOnClickListener(){
+            startActivity(Intent(this@Basket, MakeOrder::class.java))
+        }
        /* listOrder = intent.getSerializableExtra("order") as List<BlockModel>
         var a = 5*/
     }

@@ -48,7 +48,7 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         getData()
         initSearch()
         goActivity()
-        putPerson()
+        //putPerson()
         /*val GestureDetector = Intent(this @Home, AlterMap::class.java)
         binding!!.LayoutMenuPolzovat.setOnClickListener(){
             val topScreen = Intent(this @Home, AlterMap::class.java)
@@ -56,11 +56,11 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     }
 
     //Принимаем пользователя
-    fun putPerson() {
-        person  = CreateMap.Person.person as PolzovatModel
+ /*   fun putPerson() {
+        person  = Person.person as PolzovatModel
         var y = 5
     //person = intent.getSerializableExtra("person") as PolzovatModel
-    }
+    }*/
 
     private fun goActivity() {
         binding!!.MenuIconPolzovat.setOnClickListener() {

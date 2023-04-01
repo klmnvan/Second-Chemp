@@ -21,9 +21,7 @@ CreateMap : AppCompatActivity() {
     var index: Int = 0
     lateinit var gender: String
 
-    object Person{
-        var person: PolzovatModel? = null
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateMapBinding.inflate(layoutInflater)
@@ -73,7 +71,7 @@ CreateMap : AppCompatActivity() {
         override fun afterTextChanged(s: Editable?) {
             binding.inputTextName.background = getDrawable(R.drawable.map_input_style)
             Person.person?.I = binding.inputTextName.text.toString()
-            Log.d(TAG, Person.person?.I.toString())
+            Log.d(TAG,  Person.person?.I.toString())
             textChecked()
         }
     })
@@ -116,6 +114,9 @@ CreateMap : AppCompatActivity() {
                 textChecked()
             }
         })
+        binding.buttonPropusk.setOnClickListener(){
+            startActivity(Intent(this@CreateMap, Home::class.java))
+        }
     }
 
     fun textChecked()

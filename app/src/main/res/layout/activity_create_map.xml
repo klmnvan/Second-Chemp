@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_hintinfo" />
 
     <TextView
-        android:id="@+id/text_propusk"
+        android:id="@+id/buttonPropusk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="55dp"
