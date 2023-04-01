@@ -16,6 +16,7 @@ class Basket : AppCompatActivity(), AdapterOrder.Order {
     var listOrderBasket: List<ModelBasket> = ArrayList<ModelBasket>()
     var adapterOrder = AdapterOrder(this)
 
+
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,18 +52,39 @@ class Basket : AppCompatActivity(), AdapterOrder.Order {
     fun delete(blockModel: BlockModel)
     {
         listOrder = listOrder - blockModel
-        var a =5
+        var a = 5
+        calculation()
     }
-fun calculation()
-{
-    var summa = 0
-    for (i in listOrderBasket)
+
+    fun DeleteOrder(basket: ModelBasket)
     {
-        summa+=i.count*i.blockModel.price.toInt()
+        Home.Home.listOrder = Home.Home.listOrder - basket.blockModel
+        listOrderBasket = listOrderBasket - basket
+        binding.listBascket.layoutManager = GridLayoutManager(this@Basket, 1)
+        binding.listBascket.adapter = adapterOrder
+        adapterOrder.orderList.clear()
+        if (listOrderBasket.isNotEmpty()) {
+            for (element in listOrderBasket) {
+                adapterOrder.addOrder(element)
+            }
+        }
+        calculation()
     }
-    binding.textPrice.text = "$summa ₽"
-}
+    fun calculation()
+    {
+        var summa = 0
+        for (i in listOrderBasket)
+        {
+            summa+=i.count*i.blockModel.price.toInt()
+        }
+        binding.textPrice.text = "${summa} ₽"
+
+    }
     override fun CountOrder(blockModel: BlockModel) {
         delete(blockModel)
+    }
+
+    override fun deleteOrder(blockModel: ModelBasket) {
+        DeleteOrder(blockModel)
     }
 }

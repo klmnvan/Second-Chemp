@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.chemp_podject.Home.Home.listOrder
 import com.example.chemp_podject.api.*
 import com.example.chemp_podject.databinding.ActivityHomeBinding
 import com.example.chemp_podject.databinding.ItemButtonBinding
@@ -33,11 +34,11 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     private val adapterCategory = AdapterCategory(this)
     private val adapterPoisk = AdapterPoisk(this)
     private var categoryList: List<String>? = null
-    public  var listOrder: List<BlockModel> = ArrayList<BlockModel>()
+    //var listOrder: List<BlockModel> = ArrayList()
 
     object Home
     {
-        var listOrder: List<BlockModel> = ArrayList<BlockModel>()
+        var listOrder: List<BlockModel> = ArrayList()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +48,14 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         getData()
         initSearch()
         goActivity()
-        putPerson()/*
-        val GestureDetector = Intent(this @Home, AlterMap::class.java)
+        putPerson()
+        /*val GestureDetector = Intent(this @Home, AlterMap::class.java)
         binding!!.LayoutMenuPolzovat.setOnClickListener(){
             val topScreen = Intent(this @Home, AlterMap::class.java)
         }*/
     }
 
+    //Принимаем пользователя
     fun putPerson() {
         person = intent.getSerializableExtra("person") as PolzovatModel
     }
@@ -205,6 +207,7 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
                 }
             }
         }
+
         //Данный метод используется с SearchView
         /*binding!!.strokePoisk.setOnQueryTextListener(object: OnQueryTextListener{
             //onQueryTextSubmit - эта штука работает тогда, когда пользователь отправил запрос на поиск,
@@ -293,9 +296,17 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     var intentBasket: Intent? = null
     override fun Order(block: BlockModel) {
         intentBasket = Intent(this@Home, Basket::class.java)
-        Home.listOrder += block
+        listOrder += block
         intentBasket!!.putExtra("order", listOrder as java.io.Serializable)
     }
+
+    override fun deleteOrder(block: BlockModel) {
+        listOrder = listOrder - block
+    }
+
+    /*override fun OrderPrice() {
+        binding!!.textPriceButton.setText("${Basket.SumOrder.summa}  ₽")
+    }*/
 
     override fun Click(category: String, position: Int) {
         adapterBlock.blockModelList.clear()

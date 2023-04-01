@@ -16,20 +16,23 @@ class AdapterOrder (private val listener: Basket): RecyclerView.Adapter<AdapterO
 
         fun bind(modelBasket: ModelBasket, listener: Basket){
             bindingBasket.textName.text = modelBasket.blockModel.name
-            bindingBasket.textPrice.text = modelBasket.blockModel.price
+            bindingBasket.textPrice.text = modelBasket.blockModel.price + " ₽"
             bindingBasket.buttonPlus.setOnClickListener(){
                 modelBasket.count++
                 bindingBasket.textPacient.text = modelBasket.count.toString() + " пациент(а)"
                 listener.CountOrder(modelBasket.blockModel)
             }
             bindingBasket.buttonMinus.setOnClickListener(){
-                modelBasket.count--
-                bindingBasket.textPacient.text = modelBasket.count.toString() + " пациент(а)"
-                listener.CountOrder(modelBasket.blockModel)
+                if(modelBasket.count > 1){
+                    modelBasket.count--
+                    bindingBasket.textPacient.text = modelBasket.count.toString() + " пациент(а)"
+                    listener.CountOrder(modelBasket.blockModel)
+                }
             }
-
+            bindingBasket.buttonClose.setOnClickListener(){
+                listener.deleteOrder(modelBasket)
+            }
         }
-
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_basket, parent, false)
@@ -52,7 +55,7 @@ class AdapterOrder (private val listener: Basket): RecyclerView.Adapter<AdapterO
 
     interface Order{
 
-        fun CountOrder(blockModel: BlockModel){
-        }
+        fun CountOrder(blockModel: BlockModel){}
+        fun deleteOrder(blockModel: ModelBasket)
     }
 }

@@ -1,6 +1,7 @@
 package com.example.chemp_podject.api
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,8 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
 
     class BlockHolder(item: View) : RecyclerView.ViewHolder(item){
         private var bindingBlock = ItemBlockBinding.bind(item)
+        var bool: Boolean = true
+
         @SuppressLint("ResourceAsColor")
         fun bind(block: BlockModel, listener: Listener)
         {
@@ -23,11 +26,31 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
             bindingBlock.listBlock.setOnClickListener(){
                 listener.Click(block)
             }
+            if(Home.Home.listOrder.contains(block))
+            {
+                bool = false
+            }
+            else{
+                bool = true
+            }
             bindingBlock.ButtonInBlock.setOnClickListener(){
-                //bindingBlock.ButtonInBlock.isClickable = false
-                bindingBlock.ButtonInBlock.background = bindingBlock.root.context.getDrawable(R.drawable.button_home_white_style)
-                bindingBlock.ButtonInBlock.setTextColor(R.color.blue_button)
-                listener.Order(block)
+                if(bool)
+                {
+                    bindingBlock.ButtonInBlock.background = bindingBlock.root.context.getDrawable(R.drawable.button_blue_stroke_style)
+                    bindingBlock.ButtonInBlock.setTextColor(Color.BLUE)
+                    bindingBlock.ButtonInBlock.setText("Убрать")
+                    listener.Order(block)
+                    bool = false
+                    //listener.OrderPrice()
+                }
+                else{
+                    bindingBlock.ButtonInBlock.background = bindingBlock.root.context.getDrawable(R.drawable.button_home_blue_style)
+                    bindingBlock.ButtonInBlock.setTextColor(Color.WHITE)
+                    bindingBlock.ButtonInBlock.setText("Добавить")
+                    listener.deleteOrder(block)
+                    bool = true
+                    //listener.OrderPrice()
+                }
             }
         }
     }
@@ -52,6 +75,7 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
     interface Listener{
         fun Click(block: BlockModel)
         fun Order(block: BlockModel)
+        fun deleteOrder(block: BlockModel)
     }
 
 }

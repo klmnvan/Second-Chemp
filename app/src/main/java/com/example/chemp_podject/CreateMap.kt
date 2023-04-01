@@ -20,6 +20,7 @@ CreateMap : AppCompatActivity() {
     lateinit var binding: ActivityCreateMapBinding
     var index: Int = 0
     var person: PolzovatModel? = null
+    lateinit var gender: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateMapBinding.inflate(layoutInflater)
@@ -40,6 +41,13 @@ CreateMap : AppCompatActivity() {
                 if(index != 0)
                 {
                     binding.spinnerGender.background = getDrawable(R.drawable.map_input_style)
+                }
+                if(index == 1 ){
+                    gender = "м"
+                }
+                if(index == 2)
+                {
+                    gender = "ж"
                 }
                 textChecked()
             }
@@ -113,10 +121,11 @@ CreateMap : AppCompatActivity() {
             && binding!!.inputTextSurname.text.isNotEmpty() && binding!!.inputTextBirthday.text.isNotEmpty() && index != 0){
             binding!!.buttonCreate.background = getDrawable(R.drawable.shape_button2)
             binding!!.buttonCreate.setOnClickListener{
-                person = PolzovatModel(binding.inputTextName.text.toString(),binding.inputTextName.text.toString(),binding.inputTextName.text.toString(),binding.inputTextName.text.toString(),binding.inputTextName.text.toString())
+                person = PolzovatModel(binding.inputTextSurname.text.toString(),binding.inputTextName.text.toString(),binding.inputTextPatronymic.text.toString(),
+                    binding.inputTextBirthday.text.toString(), gender)
                 val intent = Intent(this@CreateMap, Home::class.java)
                 intent.putExtra("person", person)
-                Log.d(TAG, binding.inputTextName.toString())
+                Log.d(TAG, person!!.Gender)
                 startActivity(intent)
             }
         }
