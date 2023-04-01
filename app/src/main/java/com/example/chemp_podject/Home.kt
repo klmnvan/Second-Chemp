@@ -57,7 +57,9 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
 
     //Принимаем пользователя
     fun putPerson() {
-        person = intent.getSerializableExtra("person") as PolzovatModel
+        person  = CreateMap.Person.person as PolzovatModel
+        var y = 5
+    //person = intent.getSerializableExtra("person") as PolzovatModel
     }
 
     private fun goActivity() {

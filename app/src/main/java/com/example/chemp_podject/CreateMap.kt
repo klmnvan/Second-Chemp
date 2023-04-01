@@ -19,8 +19,11 @@ class
 CreateMap : AppCompatActivity() {
     lateinit var binding: ActivityCreateMapBinding
     var index: Int = 0
-    var person: PolzovatModel? = null
     lateinit var gender: String
+
+    object Person{
+        var person: PolzovatModel? = null
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateMapBinding.inflate(layoutInflater)
@@ -69,8 +72,8 @@ CreateMap : AppCompatActivity() {
 
         override fun afterTextChanged(s: Editable?) {
             binding.inputTextName.background = getDrawable(R.drawable.map_input_style)
-            person?.I = binding.inputTextName.text.toString()
-            Log.d(TAG, person?.I.toString())
+            Person.person?.I = binding.inputTextName.text.toString()
+            Log.d(TAG, Person.person?.I.toString())
             textChecked()
         }
     })
@@ -83,7 +86,7 @@ CreateMap : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 binding.inputTextPatronymic.background = getDrawable(R.drawable.map_input_style)
-                person?.O = binding.inputTextPatronymic.text.toString()
+                Person.person?.O = binding.inputTextPatronymic.text.toString()
                 textChecked()
             }
         })
@@ -96,7 +99,7 @@ CreateMap : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 binding.inputTextSurname.background = getDrawable(R.drawable.map_input_style)
-                person?.F = binding.inputTextSurname.text.toString()
+                Person.person?.F = binding.inputTextSurname.text.toString()
                 textChecked()
             }
         })
@@ -109,7 +112,7 @@ CreateMap : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 binding.inputTextBirthday.background = getDrawable(R.drawable.map_input_style)
-                person?.Birthday = binding.inputTextBirthday.text.toString()
+                Person.person?.Birthday = binding.inputTextBirthday.text.toString()
                 textChecked()
             }
         })
@@ -121,11 +124,11 @@ CreateMap : AppCompatActivity() {
             && binding!!.inputTextSurname.text.isNotEmpty() && binding!!.inputTextBirthday.text.isNotEmpty() && index != 0){
             binding!!.buttonCreate.background = getDrawable(R.drawable.shape_button2)
             binding!!.buttonCreate.setOnClickListener{
-                person = PolzovatModel(binding.inputTextSurname.text.toString(),binding.inputTextName.text.toString(),binding.inputTextPatronymic.text.toString(),
+                Person.person = PolzovatModel(binding.inputTextSurname.text.toString(),binding.inputTextName.text.toString(),binding.inputTextPatronymic.text.toString(),
                     binding.inputTextBirthday.text.toString(), gender)
                 val intent = Intent(this@CreateMap, Home::class.java)
-                intent.putExtra("person", person)
-                Log.d(TAG, person!!.Gender)
+                intent.putExtra("person", Person.person)
+                Log.d(TAG, Person.person!!.Gender)
                 startActivity(intent)
             }
         }
