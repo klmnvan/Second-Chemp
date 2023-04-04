@@ -39,6 +39,8 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     object Home
     {
         var listOrder: List<BlockModel> = ArrayList()
+        var mainPositionCategory = 0
+        var listIndexOrder: List<Int> = emptyList()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +50,7 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         getData()
         initSearch()
         goActivity()
+
         //putPerson()
         /*val GestureDetector = Intent(this @Home, AlterMap::class.java)
         binding!!.LayoutMenuPolzovat.setOnClickListener(){
@@ -61,10 +64,15 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         var y = 5
     //person = intent.getSerializableExtra("person") as PolzovatModel
     }*/
-
+    var intentBasket: Intent? = null
     private fun goActivity() {
         binding!!.MenuIconPolzovat.setOnClickListener() {
             startActivity(Intent(this@Home, AlterMap::class.java))
+            finish()
+        }
+        binding!!.buttonGoBasket.setOnClickListener(){
+            startActivity(intentBasket)
+            finish()
         }
     }
 
@@ -96,10 +104,6 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
             bindingItemCategory.ButtonCatalog.background = getDrawable(R.drawable.button_home_blue_style)
         }*/
         //
-        binding!!.buttonGoBasket.setOnClickListener(){
-            startActivity(intentBasket)
-        }
-
     }
 
     private fun init(data: List<NewsModel>) {
@@ -121,8 +125,6 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         with(binding!!) {
             listBlock.layoutManager = GridLayoutManager(this@Home, 1)
             listBlock.adapter = adapterBlock
-            listPoisk.layoutManager = GridLayoutManager(this@Home, 1)
-            listPoisk.adapter = adapterPoisk
             val listBlock: List<BlockModel> = block
             if (listBlock.isNotEmpty()) {
                 for (element in listBlock) {
@@ -197,9 +199,11 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
                 }
                 if (response2.isSuccessful) {
                     val data = response2.body()!!
-                    allBlock = data
-                    runOnUiThread { initBlock(allBlock) }
                     runOnUiThread { initCategory(data) }
+                    categoryList = data.map { it.category}.toSet().toList()
+                    allBlock = data
+                    val firstBlock = data.filter { it.category == categoryList!![0] }
+                    runOnUiThread { initBlock(firstBlock) }
                     /*runOnUiThread { initPoisk(data) }*/
                     Log.d(TAG, data.toString())
                 }
@@ -295,7 +299,7 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         itemListDialogFragment.show(supportFragmentManager, "pop")
     }
 
-    var intentBasket: Intent? = null
+
     override fun Order(block: BlockModel) {
         intentBasket = Intent(this@Home, Basket::class.java)
         listOrder += block

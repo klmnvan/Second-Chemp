@@ -116,6 +116,7 @@ CreateMap : AppCompatActivity() {
         })
         binding.buttonPropusk.setOnClickListener(){
             startActivity(Intent(this@CreateMap, Home::class.java))
+            finish()
         }
     }
 
@@ -128,7 +129,7 @@ CreateMap : AppCompatActivity() {
                 Person.person = PolzovatModel(binding.inputTextSurname.text.toString(),binding.inputTextName.text.toString(),binding.inputTextPatronymic.text.toString(),
                     binding.inputTextBirthday.text.toString(), gender)
                 val intent = Intent(this@CreateMap, Home::class.java)
-                intent.putExtra("person", Person.person)
+                //intent.putExtra("person", Person.person)
                 Log.d(TAG, Person.person!!.Gender)
                 startActivity(intent)
             }

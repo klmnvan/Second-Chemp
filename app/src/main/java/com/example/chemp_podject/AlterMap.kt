@@ -176,14 +176,16 @@ class AlterMap : AppCompatActivity() {
         }
     }
 
-    fun TextChecked(){
+    fun TextChecked()
+    {
         if(binding!!.inputTextO.text.isNotEmpty() && binding!!.inputTextI.text.isNotEmpty()
             && binding!!.inputTextF.text.isNotEmpty() && binding!!.inputTextBirthday.text.isNotEmpty() && index != 0){
             binding!!.buttonSave.background = getDrawable(R.drawable.shape_button2)
             binding!!.buttonSave.setOnClickListener{
-                Person.person = PolzovatModel(binding.inputTextF.toString(), binding.inputTextI.toString(),binding.inputTextO.toString(),
-                binding.inputTextBirthday.toString(), gender)
+                Person.person = PolzovatModel(binding.inputTextF.text.toString(), binding.inputTextI.text.toString(),binding.inputTextO.text.toString(),
+                binding.inputTextBirthday.text.toString(), gender)
                 startActivity(Intent(this@AlterMap, Home::class.java))
+                finish()
             }
         }
 

@@ -1,5 +1,7 @@
 package com.example.chemp_podject.api
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +14,8 @@ class AdapterCategory(private val listener: Home) : RecyclerView.Adapter<Adapter
     private val categoryModelList = ArrayList<String>()
 
     class CategoryHolder(item: View) :RecyclerView.ViewHolder(item){
-        private  var binding = ItemButtonBinding.bind(item)
+        var binding = ItemButtonBinding.bind(item)
+
         fun bind(category: String, listener: Listener){
             binding.ButtonCatalog.text = category
             //absoluteAdapterPosition - передает позицию элемента в Home, в метод, который мы сами создаем
@@ -31,7 +34,12 @@ class AdapterCategory(private val listener: Home) : RecyclerView.Adapter<Adapter
         return categoryModelList.size
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
+        /*if(Home.Home.mainPositionCategory == position){
+            holder.binding.ButtonCatalog.setBackgroundResource(R.drawable.button_home_blue_style)
+            holder.binding.ButtonCatalog.setTextColor(Color.WHITE)
+        }*/
         holder.bind(categoryModelList[position], listener)
     }
 

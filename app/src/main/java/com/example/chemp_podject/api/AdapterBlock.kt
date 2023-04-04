@@ -8,18 +8,27 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chemp_podject.Home
 import com.example.chemp_podject.R
+import com.example.chemp_podject.databinding.ActivityHomeBinding
 import com.example.chemp_podject.databinding.ItemBlockBinding
 
 class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBlock.BlockHolder>() {
     val blockModelList = ArrayList<BlockModel>()
 
-    class BlockHolder(item: View) : RecyclerView.ViewHolder(item){
-        private var bindingBlock = ItemBlockBinding.bind(item)
-        var bool: Boolean = true
 
+    class BlockHolder(item: View) : RecyclerView.ViewHolder(item){
+        var bindingBlock = ItemBlockBinding.bind(item)
+        var bool: Boolean = true
+        val bindingHome: ActivityHomeBinding? = null
         @SuppressLint("ResourceAsColor")
         fun bind(block: BlockModel, listener: Listener)
         {
+            /*if(Home.Home.listIndexOrder.contains(position)){
+                bindingBlock.ButtonInBlock.background = bindingBlock.root.context.getDrawable(R.drawable.button_blue_stroke_style)
+                bindingBlock.ButtonInBlock.setTextColor(Color.BLUE)
+                bindingBlock.ButtonInBlock.setText("Убрать")
+                listener.Order(block)
+                bool = false
+            }*/
             bindingBlock.TextNameBlock.text = block.name
             bindingBlock.TextTimeResult.text = block.time_result
             bindingBlock.TextPrice.text = block.price + " ₽"
@@ -27,12 +36,14 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
                 listener.Click(block)
             }
             bindingBlock.ButtonInBlock.setOnClickListener(){
+                //bindingHome!!.rowGoButton.visibility = View.VISIBLE
                 if(bool)
                 {
                     bindingBlock.ButtonInBlock.background = bindingBlock.root.context.getDrawable(R.drawable.button_blue_stroke_style)
                     bindingBlock.ButtonInBlock.setTextColor(Color.BLUE)
                     bindingBlock.ButtonInBlock.setText("Убрать")
                     listener.Order(block)
+                    Home.Home.listIndexOrder += position
                     bool = false
                     //listener.OrderPrice()
                 }
@@ -41,6 +52,7 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
                     bindingBlock.ButtonInBlock.setTextColor(Color.WHITE)
                     bindingBlock.ButtonInBlock.setText("Добавить")
                     listener.deleteOrder(block)
+                    Home.Home.listIndexOrder.drop(position)
                     bool = true
                     //listener.OrderPrice()
                 }
@@ -58,6 +70,12 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
     }
 
     override fun onBindViewHolder(holder: BlockHolder, position: Int) {
+        /*if(Home.Home.listIndexOrder.contains(position)){
+            holder.bindingBlock.ButtonInBlock.background = holder.bindingBlock.root.context.getDrawable(R.drawable.button_blue_stroke_style)
+            holder.bindingBlock.ButtonInBlock.setTextColor(Color.BLUE)
+            holder.bindingBlock.ButtonInBlock.setText("Убрать")
+            holder.bool = false
+        }*/
         holder.bind(blockModelList[position], listener)
     }
     fun addBlock(block: BlockModel)

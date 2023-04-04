@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.chemp_podject.api.BlockModel
@@ -14,7 +15,7 @@ import com.example.chemp_podject.databinding.ActivityBasketBinding
 class Basket : AppCompatActivity(), AdapterOrder.Order {
     lateinit var binding: ActivityBasketBinding
     lateinit var listOrder: List<BlockModel>
-    var listOrderBasket: List<ModelBasket> = ArrayList<ModelBasket>()
+    var listOrderBasket: List<ModelBasket> = ArrayList()
     var adapterOrder = AdapterOrder(this)
 
 
@@ -24,21 +25,24 @@ class Basket : AppCompatActivity(), AdapterOrder.Order {
         binding = ActivityBasketBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putPerson()
-        binding.buttonOrder.setOnClickListener(){
-            startActivity(Intent(this@Basket, MakeOrder::class.java))
-        }
+        init()
        /* listOrder = intent.getSerializableExtra("order") as List<BlockModel>
         var a = 5*/
     }
-
-    /* fun CountOrders(){
-        bindingRVBasket.buttonMinus.setOnClickListener(){
-            if(countOrders >= 1){
-                countOrders += 1
-            }
-            putPerson()
+    fun init(){
+        binding.buttonOrder.setOnClickListener(){
+            startActivity(Intent(this@Basket, MakeOrder::class.java))
         }
-    }*/
+        binding.buttonBack.setOnClickListener(){
+            startActivity(Intent(this@Basket, Home::class.java))
+            Home.Home.listOrder = emptyList()
+            finish()
+        }
+        binding.buttonBasket.setOnClickListener(){
+            binding.listBascket.visibility = View.GONE
+            binding.textBasketNull.visibility = View.VISIBLE
+        }
+    }
     fun putPerson() {
         listOrder = Home.Home.listOrder
         for (i in Home.Home.listOrder) {

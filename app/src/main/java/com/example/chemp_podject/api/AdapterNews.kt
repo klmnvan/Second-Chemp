@@ -18,7 +18,6 @@ class AdapterNews : RecyclerView.Adapter<AdapterNews.NewsHolder>() {
             binding.textCheckUp.text = news.name
             binding.textIssled.text = news.description
             binding.textSumma.text = news.price + " ₽"
-            binding.textCheckUp.text = news.name
             Glide.with(binding.root).load(news.image).into(binding.pictureOneBlock)
         }
     }

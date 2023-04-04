@@ -367,8 +367,10 @@
     </LinearLayout>
 
     <TableRow
+        android:id="@+id/rowGoButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="visible"
         android:layout_marginBottom="100dp"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -407,7 +409,7 @@
             android:fontFamily="@font/pro_display"
             android:textColor="@color/white"
             android:textSize="17dp"
-            android:text="500  ₽"
+            android:text="0  ₽"
             android:layout_gravity="top"
             android:textStyle="bold" />
 
