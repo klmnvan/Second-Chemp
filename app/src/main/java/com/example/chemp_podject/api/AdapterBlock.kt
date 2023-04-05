@@ -14,11 +14,9 @@ import com.example.chemp_podject.databinding.ItemBlockBinding
 class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBlock.BlockHolder>() {
     val blockModelList = ArrayList<BlockModel>()
 
-
     class BlockHolder(item: View) : RecyclerView.ViewHolder(item){
         var bindingBlock = ItemBlockBinding.bind(item)
         var bool: Boolean = true
-        val bindingHome: ActivityHomeBinding? = null
         @SuppressLint("ResourceAsColor")
         fun bind(block: BlockModel, listener: Listener)
         {
@@ -43,7 +41,6 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
                     bindingBlock.ButtonInBlock.setTextColor(Color.BLUE)
                     bindingBlock.ButtonInBlock.setText("Убрать")
                     listener.Order(block)
-                    Home.Home.listIndexOrder += position
                     bool = false
                     //listener.OrderPrice()
                 }
@@ -52,7 +49,6 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
                     bindingBlock.ButtonInBlock.setTextColor(Color.WHITE)
                     bindingBlock.ButtonInBlock.setText("Добавить")
                     listener.deleteOrder(block)
-                    Home.Home.listIndexOrder.drop(position)
                     bool = true
                     //listener.OrderPrice()
                 }
@@ -70,11 +66,13 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
     }
 
     override fun onBindViewHolder(holder: BlockHolder, position: Int) {
-        /*if(Home.Home.listIndexOrder.contains(position)){
+        if(Person.listOrder.contains(blockModelList[position])){
             holder.bindingBlock.ButtonInBlock.background = holder.bindingBlock.root.context.getDrawable(R.drawable.button_blue_stroke_style)
             holder.bindingBlock.ButtonInBlock.setTextColor(Color.BLUE)
             holder.bindingBlock.ButtonInBlock.setText("Убрать")
             holder.bool = false
+        }
+        /*if(Home.Home.listIndexOrder.contains(position)){
         }*/
         holder.bind(blockModelList[position], listener)
     }

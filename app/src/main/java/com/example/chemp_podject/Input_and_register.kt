@@ -59,8 +59,8 @@ class Input_and_register : AppCompatActivity() {
                         Log.d(ContentValues.TAG, e.toString())
                     }
                 }
-                var intent = Intent(this@Input_and_register,CodFromEmail::class.java)
-             /*   intent.putExtra("email", binding!!.inputEmailtext.text.toString())*/
+                var intent = Intent(this@Input_and_register, CodFromEmail::class.java)
+                intent.putExtra("email", binding!!.inputEmailtext.text.toString())
                 startActivity(intent)
             }
         }

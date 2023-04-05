@@ -48,7 +48,6 @@ class CodFromEmail: AppCompatActivity() {
                 binding!!.otchetTime.text = "Отправить код повторно можно \nбудет через ${elapsedSeconds} секунд"
             }
             override fun onFinish() {
-
             }
         }
         timer.start()
@@ -124,40 +123,29 @@ class CodFromEmail: AppCompatActivity() {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
 
-
             val httpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .build()
             val retrofit =
                 Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("https://medic.madskill.ru/")
+                    .baseUrl("https://medic.madskill.ru/%22")
                         .client(httpClient)
                         .build()
                         val requestApi = retrofit.create(ApiRequestBlock::class.java)
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val response = requestApi.postEmail(email).awaitResponse()
+                    val response = requestApi.postCode(email,code).awaitResponse()
                     Log.d("Response", response.toString())
-                    if(response.isSuccessful)
-                    {
-                        Log.d("Response","not success")
-                    }
-                    else
-                    {
-                        Log.d("Response","success")
-
-                    }
                 } catch (e: Exception) {
                     Log.d(ContentValues.TAG, e.toString())
+                    startActivity(Intent(this@CodFromEmail, CreatePassword::class.java))
                 }
             }
 
-           /* startActivity(Intent(this@CodFromEmail, CreatePassword::class.java))*/
+            /* startActivity(Intent(this@CodFromEmail, CreatePassword::class.java))*/
         }
-        binding!!.strelka.setOnClickListener(){
-            startActivity(Intent(this@CodFromEmail, Input_and_register::class.java))
-        }
+
 
     }
 }

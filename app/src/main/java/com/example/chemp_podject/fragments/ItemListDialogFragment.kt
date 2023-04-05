@@ -36,7 +36,7 @@ class ItemListDialogFragment : BottomSheetDialogFragment() {
             buttonDobavit.text = "Добавить за " + block.price + " ₽"
         }
         binding.buttonDobavit.setOnClickListener(){
-            Home.Home.listOrder += block
+            Person.listOrder += block
         }
     }
 }

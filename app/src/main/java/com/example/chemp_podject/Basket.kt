@@ -35,17 +35,17 @@ class Basket : AppCompatActivity(), AdapterOrder.Order {
         }
         binding.buttonBack.setOnClickListener(){
             startActivity(Intent(this@Basket, Home::class.java))
-            Home.Home.listOrder = emptyList()
             finish()
         }
         binding.buttonBasket.setOnClickListener(){
             binding.listBascket.visibility = View.GONE
             binding.textBasketNull.visibility = View.VISIBLE
+            Person.listOrder = emptyList()
         }
     }
     fun putPerson() {
-        listOrder = Home.Home.listOrder
-        for (i in Home.Home.listOrder) {
+        listOrder = Person.listOrder
+        for (i in Person.listOrder) {
             listOrderBasket += ModelBasket(i, 1)
         }
         calculation()
@@ -66,7 +66,7 @@ class Basket : AppCompatActivity(), AdapterOrder.Order {
 
     fun DeleteOrder(basket: ModelBasket)
     {
-        Home.Home.listOrder = Home.Home.listOrder - basket.blockModel
+        Person.listOrder = Person.listOrder - basket.blockModel
         listOrderBasket = listOrderBasket - basket
         binding.listBascket.layoutManager = GridLayoutManager(this@Basket, 1)
         binding.listBascket.adapter = adapterOrder
