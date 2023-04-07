@@ -5,4 +5,7 @@
         <item>Мужской</item>
         <item>Женский</item>
     </string-array>
+    <string name="dontForgottenCheck">
+<font color="#939396">Не забудьте ознакомиться с</font>
+        <font color='#1A6FEE'> правилами подготовки к сдаче анализов</font></string>
 </resources>
