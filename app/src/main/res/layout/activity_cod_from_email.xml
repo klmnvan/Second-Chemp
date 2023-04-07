@@ -94,6 +94,7 @@
             android:layout_marginHorizontal="8dp"
             android:background="@drawable/shape_button_stroke"
             android:ems="10"
+            android:text=""
             android:fontFamily="@font/lato_bold"
             android:gravity="center"
             android:inputType="number"

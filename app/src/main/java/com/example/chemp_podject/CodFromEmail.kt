@@ -8,6 +8,7 @@ import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
 import com.example.chemp_podject.api.ApiRequest
 import com.example.chemp_podject.api.ApiRequestBlock
 import com.example.chemp_podject.api.BlockModel
@@ -25,8 +26,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class CodFromEmail: AppCompatActivity() {
     private var binding: ActivityCodFromEmailBinding? = null
-    lateinit var code: String
+    var code: String = "0000"
     lateinit var email: String
+    var boolean: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCodFromEmailBinding.inflate(layoutInflater)
@@ -34,11 +36,12 @@ class CodFromEmail: AppCompatActivity() {
         /*val intent = Intent(this@CodFromEmail, CreatePassword::class.java)
         startActivity(intent)*/
         TextChanged()
-        init()
         Timer()
         var arguments = intent.extras
         email = arguments?.getString("email").toString()
-        var c = 10
+        binding!!.strelka.setOnClickListener(){
+            startActivity(Intent(this@CodFromEmail, Input_and_register::class.java))
+        }
     }
 
     fun Timer(){
@@ -54,7 +57,6 @@ class CodFromEmail: AppCompatActivity() {
     }
     fun TextChanged()
     {
-
         binding!!.inputNumber1.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -80,7 +82,7 @@ class CodFromEmail: AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if(binding!!.inputNumber2.length()==1) {
+                if(s!!.length==1) {
                     binding!!.inputNumber3.requestFocus()
                 }
             }
@@ -97,6 +99,7 @@ class CodFromEmail: AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 if(binding!!.inputNumber3.length()==1) {
                     binding!!.inputNumber4.requestFocus()
+                    binding!!.inputNumber4.text = null
                 }
             }
         })
@@ -110,7 +113,7 @@ class CodFromEmail: AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if(binding!!.inputNumber4.length()==1) {
+                if(s!!.length==1) {
                     init()
                 }
             }
@@ -123,26 +126,38 @@ class CodFromEmail: AppCompatActivity() {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
 
+
             val httpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .build()
-            val retrofit =
-                Retrofit.Builder()
+            val retrofit = Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("https://medic.madskill.ru/%22")
-                        .client(httpClient)
-                        .build()
-                        val requestApi = retrofit.create(ApiRequestBlock::class.java)
+                    .baseUrl("https://medic.madskill.ru")
+                    .client(httpClient)
+                    .build()
+            val requestApi = retrofit.create(ApiRequestBlock::class.java)
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val response = requestApi.postCode(email,code).awaitResponse()
+                    val response = requestApi.postCode(code,email).awaitResponse()
                     Log.d("Response", response.toString())
                 } catch (e: Exception) {
+                    boolean = 1
                     Log.d(ContentValues.TAG, e.toString())
                     startActivity(Intent(this@CodFromEmail, CreatePassword::class.java))
+                    finish()
                 }
             }
-
+            if(boolean!=1){
+                binding!!.inputNumber1.text = null
+                binding!!.inputNumber2.text = null
+                binding!!.inputNumber3.text = null
+                binding!!.inputNumber4.text = null
+                binding!!.inputNumber1.requestFocus()
+            }
+/*
+            if(code == ""){
+                Toast.makeText(applicationContext,"Неправильный код", Toast.LENGTH_SHORT).show()
+            }*/
             /* startActivity(Intent(this@CodFromEmail, CreatePassword::class.java))*/
         }
 

@@ -1,10 +1,12 @@
 package com.example.chemp_podject
 
+import Person
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PerformanceHintManager
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
@@ -85,8 +87,8 @@ class Basket : AppCompatActivity(), AdapterOrder.Order {
         {
             summa+=i.count*i.blockModel.price.toInt()
         }
+        //Person.summa = summa
         binding.textPrice.text = "${summa} ₽"
-
     }
     override fun CountOrder(blockModel: BlockModel) {
         delete(blockModel)

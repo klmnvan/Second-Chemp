@@ -43,10 +43,9 @@ class Input_and_register : AppCompatActivity() {
                 val httpClient = OkHttpClient.Builder()
                     .addInterceptor(interceptor)
                     .build()
-                val retrofit =
-                    Retrofit.Builder()
+                val retrofit = Retrofit.Builder()
                         .addConverterFactory(GsonConverterFactory.create())
-                        .baseUrl("https://medic.madskill.ru/")
+                        .baseUrl("https://medic.madskill.ru")
                         .client(httpClient)
                         .build()
                 val requestApi = retrofit.create(ApiRequestBlock::class.java)

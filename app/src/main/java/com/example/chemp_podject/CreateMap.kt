@@ -1,5 +1,6 @@
 package com.example.chemp_podject
 
+import Person
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
@@ -11,8 +12,18 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.chemp_podject.api.ApiRequestBlock
 import com.example.chemp_podject.databinding.ActivityCreateMapBinding
 import com.example.chemp_podject.models.PolzovatModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.OkHttp
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.awaitResponse
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class
@@ -70,8 +81,8 @@ CreateMap : AppCompatActivity() {
 
         override fun afterTextChanged(s: Editable?) {
             binding.inputTextName.background = getDrawable(R.drawable.map_input_style)
-            Person.person?.I = binding.inputTextName.text.toString()
-            Log.d(TAG,  Person.person?.I.toString())
+            Person.person?.firstname = binding.inputTextName.text.toString()
+            Log.d(TAG,  Person.person?.firstname.toString())
             textChecked()
         }
     })
@@ -84,7 +95,7 @@ CreateMap : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 binding.inputTextPatronymic.background = getDrawable(R.drawable.map_input_style)
-                Person.person?.O = binding.inputTextPatronymic.text.toString()
+                Person.person?.middlename = binding.inputTextPatronymic.text.toString()
                 textChecked()
             }
         })
@@ -97,7 +108,7 @@ CreateMap : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 binding.inputTextSurname.background = getDrawable(R.drawable.map_input_style)
-                Person.person?.F = binding.inputTextSurname.text.toString()
+                Person.person?.lastname = binding.inputTextSurname.text.toString()
                 textChecked()
             }
         })
@@ -110,7 +121,7 @@ CreateMap : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 binding.inputTextBirthday.background = getDrawable(R.drawable.map_input_style)
-                Person.person?.Birthday = binding.inputTextBirthday.text.toString()
+                Person.person?.bith = binding.inputTextBirthday.text.toString()
                 textChecked()
             }
         })
@@ -130,11 +141,38 @@ CreateMap : AppCompatActivity() {
                     binding.inputTextBirthday.text.toString(), gender)
                 val intent = Intent(this@CreateMap, Home::class.java)
                 //intent.putExtra("person", Person.person)
-                Log.d(TAG, Person.person!!.Gender)
+                Log.d(TAG, Person.person!!.pol)
+                //getData()
                 startActivity(intent)
             }
         }
     }
+    /*fun getData(){
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        val httpClient = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+        val api = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://medic.madskill.ru")
+            .client(httpClient)
+            .build()
+        val requestApi = api.create(ApiRequestBlock::class.java)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val bundle: Bundle
+                bundle = bundle.Person.person
+                val response = requestApi.postProfile(Person.person)
+                if(response.isSuccessful){
+                }
+
+            }catch (e: Exception){
+                Log.d(TAG, e.toString())
+            }
+        }
+    }*/
 
 }
 

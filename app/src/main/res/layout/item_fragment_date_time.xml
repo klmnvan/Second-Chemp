@@ -53,6 +53,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textMakeOrder" />
 
             <TableRow
+                android:visibility="visible"
                 android:id="@+id/tabDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +72,7 @@
                     android:layout_weight="1"
                     android:entries="@array/gender"
                     android:gravity="center|start"
-                    android:text="Тицкий Эдуард"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="16dp"></TextView>
 
@@ -112,7 +113,7 @@
                     android:id="@+id/datePicker"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="gone"></CalendarView>
+                    android:visibility="visible"></CalendarView>
             </LinearLayout>
 
 

@@ -46,7 +46,7 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         getData()
         initSearch()
         goActivity()
-
+        //binding!!.textPriceButton.setText(Person.summa.toString() + " P")
         //putPerson()
         /*val GestureDetector = Intent(this @Home, AlterMap::class.java)
         binding!!.LayoutMenuPolzovat.setOnClickListener(){
@@ -63,8 +63,14 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     var intentBasket: Intent? = null
     private fun goActivity() {
         binding!!.MenuIconPolzovat.setOnClickListener() {
-            startActivity(Intent(this@Home, AlterMap::class.java))
-            finish()
+            if(Person.person == null){
+                startActivity(Intent(this@Home, CreateMap::class.java))
+                finish()
+            }
+            else{
+                startActivity(Intent(this@Home, AlterMap::class.java))
+                finish()
+            }
         }
         binding!!.buttonGoBasket.setOnClickListener(){
             startActivity(Intent(this@Home, Basket::class.java))

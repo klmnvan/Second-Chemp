@@ -72,18 +72,18 @@ class AlterMap : AppCompatActivity() {
     fun Proverka(){
         if(Person.person != null){
             var index = 0
-            binding.inputTextF.setText(Person.person!!.F)
+            binding.inputTextF.setText(Person.person!!.lastname)
             binding.inputTextF.background = getDrawable(R.drawable.map_input_style)
-            binding.inputTextI.setText(Person.person!!.I)
+            binding.inputTextI.setText(Person.person!!.firstname)
             binding.inputTextI.background = getDrawable(R.drawable.map_input_style)
-            binding.inputTextO.setText(Person.person!!.O)
+            binding.inputTextO.setText(Person.person!!.middlename)
             binding.inputTextO.background = getDrawable(R.drawable.map_input_style)
-            binding.inputTextBirthday.setText(Person.person!!.Birthday)
+            binding.inputTextBirthday.setText(Person.person!!.bith)
             binding.inputTextBirthday.background = getDrawable(R.drawable.map_input_style)
-            if(Person.person!!.Gender == "м"){
+            if(Person.person!!.pol == "м"){
                 index = 1
             }
-            if(Person.person!!.Gender == "ж"){
+            if(Person.person!!.pol == "ж"){
                 index = 2
             }
             binding.spinnerGender.setSelection(index)

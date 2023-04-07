@@ -4,5 +4,5 @@ import com.example.chemp_podject.models.PolzovatModel
 object Person {
     var person: PolzovatModel? = null
     var listOrder: List<BlockModel> = ArrayList()
-    var summa: Int? = null
+    //var summa: Int? = 0
 }
