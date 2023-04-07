@@ -40,12 +40,12 @@
 
     <TextView
         android:id="@+id/TextVoidite"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="20dp"
         android:textColor="@color/black"
-        android:text="Войдите, чтобы пользоваться функциями\nприложения"
-        android:gravity="start"
+        android:text="Войдите, чтобы пользоваться функциями приложения"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -80,9 +80,9 @@ class CodFromEmail: AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if(binding!!.inputNumber2.length()==1)
-                {
-                    binding!!.inputNumber3.requestFocus()               }
+                if(binding!!.inputNumber2.length()==1) {
+                    binding!!.inputNumber3.requestFocus()
+                }
             }
         })
         binding!!.inputNumber3.addTextChangedListener(object : TextWatcher{
@@ -95,9 +95,9 @@ class CodFromEmail: AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if(binding!!.inputNumber3.length()==1)
-                {
-                    binding!!.inputNumber4.requestFocus()               }
+                if(binding!!.inputNumber3.length()==1) {
+                    binding!!.inputNumber4.requestFocus()
+                }
             }
         })
         binding!!.inputNumber4.addTextChangedListener(object : TextWatcher{
@@ -110,9 +110,9 @@ class CodFromEmail: AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if(binding!!.inputNumber4.length()==1)
-                {
-                    init()           }
+                if(binding!!.inputNumber4.length()==1) {
+                    init()
+                }
             }
         })
     }

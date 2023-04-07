@@ -62,6 +62,7 @@ class Input_and_register : AppCompatActivity() {
                 var intent = Intent(this@Input_and_register, CodFromEmail::class.java)
                 intent.putExtra("email", binding!!.inputEmailtext.text.toString())
                 startActivity(intent)
+                finish()
             }
         }
 
