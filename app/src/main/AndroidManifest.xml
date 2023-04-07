@@ -29,7 +29,7 @@
             android:name=".on_board1"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Home"
             android:exported="false" />
         <activity
             android:name=".AlterMap"
@@ -63,7 +63,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Home"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
