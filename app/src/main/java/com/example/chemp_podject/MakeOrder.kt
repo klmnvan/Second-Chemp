@@ -27,6 +27,7 @@ class MakeOrder : AppCompatActivity(), ItemListDialogFragmentAddress.Listener, I
         init()
         textChecked()
         initOrder()
+        calculation()
     }
 
     fun initOrder(){
@@ -39,6 +40,11 @@ class MakeOrder : AppCompatActivity(), ItemListDialogFragmentAddress.Listener, I
                 }
             }
         }
+    }
+
+    fun calculation(){
+        var summa: Int = 0
+        Person.listOrder.map { it.price }.toList()
     }
 
     fun textChecked(){

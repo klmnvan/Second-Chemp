@@ -137,17 +137,17 @@ CreateMap : AppCompatActivity() {
             && binding!!.inputTextSurname.text.isNotEmpty() && binding!!.inputTextBirthday.text.isNotEmpty() && index != 0){
             binding!!.buttonCreate.background = getDrawable(R.drawable.shape_button2)
             binding!!.buttonCreate.setOnClickListener{
-                Person.person = PolzovatModel(binding.inputTextSurname.text.toString(),binding.inputTextName.text.toString(),binding.inputTextPatronymic.text.toString(),
-                    binding.inputTextBirthday.text.toString(), gender)
+                Person.person = PolzovatModel(0,binding.inputTextSurname.text.toString(),binding.inputTextName.text.toString(),binding.inputTextPatronymic.text.toString(),
+                    binding.inputTextBirthday.text.toString(), "Мужской","1")
                 val intent = Intent(this@CreateMap, Home::class.java)
                 //intent.putExtra("person", Person.person)
                 Log.d(TAG, Person.person!!.pol)
-                //getData()
+                postData()
                 startActivity(intent)
             }
         }
     }
-    /*fun getData(){
+    fun postData(){
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val httpClient = OkHttpClient.Builder()
@@ -162,17 +162,13 @@ CreateMap : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val bundle: Bundle
-                bundle = bundle.Person.person
-                val response = requestApi.postProfile(Person.person)
-                if(response.isSuccessful){
-                }
-
+                //val response = requestApi.postProfile(Person.person!!)
+                Log.d(TAG,"Success")
             }catch (e: Exception){
                 Log.d(TAG, e.toString())
             }
         }
-    }*/
+    }
 
 }
 

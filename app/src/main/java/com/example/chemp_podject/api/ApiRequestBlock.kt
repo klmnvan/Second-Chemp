@@ -13,8 +13,7 @@ interface ApiRequestBlock {
     @POST("/api/signin")
     fun postCode(@Header("code") code: String, @Header("email") email: String): Call<String>
     @POST("/api/createProfile")
-    @FormUrlEncoded
-    fun postProfile(@Field("person") profile: PolzovatModel)
+    fun postProfile(@Body profile: PolzovatModel):Call<String>
     @POST("/api/updateProfile")
     fun postUpdateProfile(): Call<List<PolzovatModel>>
 }

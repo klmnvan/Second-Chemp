@@ -182,8 +182,8 @@ class AlterMap : AppCompatActivity() {
             && binding!!.inputTextF.text.isNotEmpty() && binding!!.inputTextBirthday.text.isNotEmpty() && index != 0){
             binding!!.buttonSave.background = getDrawable(R.drawable.shape_button2)
             binding!!.buttonSave.setOnClickListener{
-                Person.person = PolzovatModel(binding.inputTextF.text.toString(), binding.inputTextI.text.toString(),binding.inputTextO.text.toString(),
-                binding.inputTextBirthday.text.toString(), gender)
+                Person.person = PolzovatModel(0,binding.inputTextF.text.toString(), binding.inputTextI.text.toString(),binding.inputTextO.text.toString(),
+                binding.inputTextBirthday.text.toString(), gender,"1")
                 startActivity(Intent(this@AlterMap, Home::class.java))
                 finish()
             }

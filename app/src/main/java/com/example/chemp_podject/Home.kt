@@ -1,5 +1,6 @@
 package com.example.chemp_podject
 
+
 import Person
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -46,6 +47,7 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         getData()
         initSearch()
         goActivity()
+        calculation()
         //binding!!.textPriceButton.setText(Person.summa.toString() + " P")
         //putPerson()
         /*val GestureDetector = Intent(this @Home, AlterMap::class.java)
@@ -61,6 +63,16 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     //person = intent.getSerializableExtra("person") as PolzovatModel
     }*/
     var intentBasket: Intent? = null
+    fun calculation()
+    {
+        var summa = 0
+        for (i in Person.listOrder)
+        {
+            summa+=i.price.toInt()
+        }
+        //Person.summa = summa
+        binding!!.textPriceButton.text = "${summa} ₽"
+    }
     private fun goActivity() {
         binding!!.MenuIconPolzovat.setOnClickListener() {
             if(Person.person == null){
@@ -243,11 +255,13 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     override fun Order(block: BlockModel) {
         intentBasket = Intent(this@Home, Basket::class.java)
         Person.listOrder += block
+        calculation()
         //intentBasket!!.putExtra("order", Person.listOrder as java.io.Serializable)
     }
 
     override fun deleteOrder(block: BlockModel) {
         Person.listOrder = Person.listOrder - block
+        calculation()
     }
 
     override fun Click(category: String, position: Int) {
