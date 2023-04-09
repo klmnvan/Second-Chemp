@@ -2,22 +2,20 @@ package com.example.chemp_podject
 
 
 import Person
+import android.R
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.GestureDetector
 import android.view.View
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.chemp_podject.api.*
 import com.example.chemp_podject.databinding.ActivityHomeBinding
-import com.example.chemp_podject.databinding.ItemButtonBinding
 import com.example.chemp_podject.fragments.ItemListDialogFragment
-import com.example.chemp_podject.models.PolzovatModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,6 +23,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     AdapterCategory.Listener {
@@ -41,7 +40,6 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
         getData()
@@ -270,4 +268,17 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         initBlock(allBlockSort)
     }
 
+    // Java
+    fun saveActivityPreferences() {
+        // Создайте или извлеките объект настроек активности.
+        val activityPreferences = getPreferences(MODE_PRIVATE)
+        // Извлеките редактор, чтобы изменить Общие настройки.
+        val editor = activityPreferences.edit()
+        // Извлеките представление.
+        val myTextView = binding!!.textView.text as TextView
+        // Запишите новые значения примитивных типов в объект Общих настроек.
+        editor.putString("currentTextValue", myTextView.text.toString())
+        // Сохраните изменения.
+        editor.commit()
+    }
 }

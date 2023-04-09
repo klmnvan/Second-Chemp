@@ -17,13 +17,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".OrderComplete"
+            android:name=".CreateMap"
             android:exported="false" />
         <activity
             android:name=".Oplata"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".OrderComplete"
             android:exported="false" />
         <activity
             android:name=".Input_and_register"
@@ -66,7 +66,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CreateMap"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

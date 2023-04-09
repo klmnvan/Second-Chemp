@@ -139,8 +139,7 @@ class CodFromEmail: AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val response = requestApi.postCode(code,email).awaitResponse()
-
-
+                    Log.d("Response", response.toString())
                     runOnUiThread {   Toast.makeText(this@CodFromEmail,"Error",Toast.LENGTH_LONG).show()}
                 } catch (e: Exception) {
                     boolean = 1

@@ -1,33 +1,57 @@
 package com.example.chemp_podject
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.example.chemp_podject.Input_and_register
 import com.example.chemp_podject.databinding.ActivityMainBinding
-import com.example.chemp_podject.databinding.ActivityOnBoard1Binding
+import com.example.chemp_podject.on_board1
 import java.util.concurrent.TimeUnit
 
+
 class MainActivity : AppCompatActivity() {
-    private var binding: ActivityMainBinding? =null
+    lateinit var binding: ActivityMainBinding
+    private val des = "my_settings"
+    val sp = getSharedPreferences(des, Context.MODE_PRIVATE)
+    lateinit var e: SharedPreferences.Editor
+    object goActicity{
+        var bool: Boolean = false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
-        val thread: Thread = object : Thread() {
+        setContentView(binding.root)
+        val hasVisited = sp.getInt("hasVisited", 0)
+        var thread: Thread = object : Thread(){
             override fun run() {
                 try {
                     TimeUnit.SECONDS.sleep(2)
-                    val intent = Intent(this@MainActivity,on_board1::class.java)
-                    startActivity(intent)
-                } catch (e: InterruptedException) {
+                    //Сработает только в сессии2
+                    if(hasVisited == 0){
+                        e = sp.edit()
+                        e.putInt("hasVisited", 1)
+                        e.commit() // не забудьте подтвердить изменения
+                        startActivity(Intent(this@MainActivity, on_board1::class.java))
+                    }
+                    if (hasVisited == 1){
+                        startActivity(Intent(this@MainActivity, Input_and_register::class.java))
+                    }
+
+                    if (hasVisited == 2){
+                        startActivity(Intent(this@MainActivity, CreatePassword::class.java))
+                    }
+                    if (hasVisited == 3){
+                        startActivity(Intent(this@MainActivity, Home::class.java))
+                    }
+                }
+                catch (e: InterruptedException){
                     e.printStackTrace()
                 }
             }
         }
         thread.start()
-        val decorView: View = window.decorView
-        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
     }
 }

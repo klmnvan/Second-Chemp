@@ -95,10 +95,10 @@ class on_board1 : AppCompatActivity(), GestureDetector.OnGestureListener {
     override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
         val diffY = e2.y - e1.y
         val diffX = e2.x - e1.x
-        if (abs(diffX)> abs(diffY)){
-            if(abs(diffX) > 100 && abs(velocityX) > 100){
-                if(diffX < 0){
-                    if(queue!!.size!=0){
+        if(abs(diffX)>abs(diffY)){
+            if(abs(diffX)>100 && abs(velocityX) > 100){
+                if(diffX<0){
+                    if(queue.size != 0){
                         enterOnBoard(queue.poll())
                     }
                 }
