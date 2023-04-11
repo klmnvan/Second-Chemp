@@ -33,8 +33,6 @@ class CodFromEmail: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCodFromEmailBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-        /*val intent = Intent(this@CodFromEmail, CreatePassword::class.java)
-        startActivity(intent)*/
         TextChanged()
         Timer()
         var arguments = intent.extras
@@ -126,7 +124,6 @@ class CodFromEmail: AppCompatActivity() {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
 
-
             val httpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .build()
@@ -138,8 +135,8 @@ class CodFromEmail: AppCompatActivity() {
             val requestApi = retrofit.create(ApiRequestBlock::class.java)
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val response = requestApi.postCode(code,email).awaitResponse()
-                    Log.d("Response", response.toString())
+                    requestApi.postCode(code,email).awaitResponse()
+                    Log.d("Response", "success")
                     runOnUiThread {   Toast.makeText(this@CodFromEmail,"Error",Toast.LENGTH_LONG).show()}
                 } catch (e: Exception) {
                     boolean = 1

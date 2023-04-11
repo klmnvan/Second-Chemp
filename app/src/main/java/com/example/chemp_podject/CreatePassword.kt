@@ -11,16 +11,10 @@ class CreatePassword : AppCompatActivity() {
     private var password: String? = null
     private var index: Int = 0
     private var binding: ActivityCreatePasswordBinding? = null
-    private val des = "my_settings"
-    val sp = getSharedPreferences(des, Context.MODE_PRIVATE)
-    lateinit var e: SharedPreferences.Editor
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreatePasswordBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-        e = sp.edit()
-        e.putInt("hasVisited", 2)
-        e.commit()
         init()
     }
     private fun init()
@@ -74,14 +68,6 @@ class CreatePassword : AppCompatActivity() {
             SetPassword(index)
         }
         if(index == 4){
-            /*//password = password.replace() //Как удалить символ из строки???
-            //password -= buttonCircle0.text
-            password = password?.dropLast(1)
-            index--
-            SetPassword(index)*/
-            e = sp.edit()
-            e.putInt("hasVisited", 3)
-            e.commit()
             startActivity(Intent(this@CreatePassword, CreateMap::class.java))
         }
     }

@@ -40,26 +40,14 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding =  ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
         getData()
         initSearch()
         goActivity()
         calculation()
-        //binding!!.textPriceButton.setText(Person.summa.toString() + " P")
-        //putPerson()
-        /*val GestureDetector = Intent(this @Home, AlterMap::class.java)
-        binding!!.LayoutMenuPolzovat.setOnClickListener(){
-            val topScreen = Intent(this @Home, AlterMap::class.java)
-        }*/
     }
 
-    //Принимаем пользователя
- /*   fun putPerson() {
-        person  = Person.person as PolzovatModel
-        var y = 5
-    //person = intent.getSerializableExtra("person") as PolzovatModel
-    }*/
     var intentBasket: Intent? = null
     fun calculation()
     {
@@ -68,7 +56,6 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         {
             summa+=i.price.toInt()
         }
-        //Person.summa = summa
         binding!!.textPriceButton.text = "${summa} ₽"
     }
     private fun goActivity() {
@@ -204,7 +191,6 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
                     allBlock = data
                     val firstBlock = data.filter { it.category == categoryList!![0] }
                     runOnUiThread { initBlock(firstBlock) }
-                    /*runOnUiThread { initPoisk(data) }*/
                     Log.d(TAG, data.toString())
                 }
             } catch (e: Exception) {
@@ -254,7 +240,6 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         intentBasket = Intent(this@Home, Basket::class.java)
         Person.listOrder += block
         calculation()
-        //intentBasket!!.putExtra("order", Person.listOrder as java.io.Serializable)
     }
 
     override fun deleteOrder(block: BlockModel) {
@@ -266,19 +251,5 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         adapterBlock.blockModelList.clear()
         var allBlockSort: List<BlockModel> = allBlock.filter { it.category == category }
         initBlock(allBlockSort)
-    }
-
-    // Java
-    fun saveActivityPreferences() {
-        // Создайте или извлеките объект настроек активности.
-        val activityPreferences = getPreferences(MODE_PRIVATE)
-        // Извлеките редактор, чтобы изменить Общие настройки.
-        val editor = activityPreferences.edit()
-        // Извлеките представление.
-        val myTextView = binding!!.textView.text as TextView
-        // Запишите новые значения примитивных типов в объект Общих настроек.
-        editor.putString("currentTextValue", myTextView.text.toString())
-        // Сохраните изменения.
-        editor.commit()
     }
 }

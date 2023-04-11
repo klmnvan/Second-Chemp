@@ -65,7 +65,6 @@ CreateMap : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
             }
         }
         init()
@@ -142,12 +141,12 @@ CreateMap : AppCompatActivity() {
                 val intent = Intent(this@CreateMap, Home::class.java)
                 //intent.putExtra("person", Person.person)
                 Log.d(TAG, Person.person!!.pol)
-                postData()
+                //postData()
                 startActivity(intent)
             }
         }
     }
-    fun postData(){
+    /*fun postData(){
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val httpClient = OkHttpClient.Builder()
@@ -168,7 +167,7 @@ CreateMap : AppCompatActivity() {
                 Log.d(TAG, e.toString())
             }
         }
-    }
+    }*/
 
 }
 
