@@ -36,10 +36,6 @@ class AdapterCategory(private val listener: Home) : RecyclerView.Adapter<Adapter
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
-        /*if(Home.Home.mainPositionCategory == position){
-            holder.binding.ButtonCatalog.setBackgroundResource(R.drawable.button_home_blue_style)
-            holder.binding.ButtonCatalog.setTextColor(Color.WHITE)
-        }*/
         holder.bind(categoryModelList[position], listener)
     }
 

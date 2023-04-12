@@ -139,7 +139,6 @@ CreateMap : AppCompatActivity() {
                 Person.person = PolzovatModel(0,binding.inputTextSurname.text.toString(),binding.inputTextName.text.toString(),binding.inputTextPatronymic.text.toString(),
                     binding.inputTextBirthday.text.toString(), "Мужской","1")
                 val intent = Intent(this@CreateMap, Home::class.java)
-                //intent.putExtra("person", Person.person)
                 Log.d(TAG, Person.person!!.pol)
                 //postData()
                 startActivity(intent)

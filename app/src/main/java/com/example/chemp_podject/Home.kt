@@ -34,10 +34,6 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
     private val adapterPoisk = AdapterPoisk(this)
     private var categoryList: List<String>? = null
 
-    object Home
-    {
-        var mainPositionCategory = 0
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =  ActivityHomeBinding.inflate(layoutInflater)
@@ -105,10 +101,8 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         with(binding!!) {
             listNews.layoutManager = GridLayoutManager(this@Home, data.size)
             listNews.adapter = adapterNews
-
-            val listCharacter: List<NewsModel> = data
-            if (listCharacter.isNotEmpty()) {
-                for (element in listCharacter) {
+            if (data.isNotEmpty()) {
+                for (element in data) {
                     adapterNews.addNews(element)
                 }
             }
@@ -118,9 +112,8 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
         with(binding!!) {
             listBlock.layoutManager = GridLayoutManager(this@Home, 1)
             listBlock.adapter = adapterBlock
-            val listBlock: List<BlockModel> = block
-            if (listBlock.isNotEmpty()) {
-                for (element in listBlock) {
+            if (block.isNotEmpty()) {
+                for (element in block) {
                     adapterBlock.addBlock(element)
                 }
             }
@@ -154,7 +147,6 @@ class Home : AppCompatActivity(), AdapterBlock.Listener, AdapterPoisk.Listener,
             categoryList = category.map { it.category }.toSet().toList()
             listCategory.layoutManager = GridLayoutManager(this@Home, category.size)
             listCategory.adapter = adapterCategory
-
             if (categoryList!!.isNotEmpty()) {
                 for (element in categoryList!!) {
                     adapterCategory.addCategogory(element)

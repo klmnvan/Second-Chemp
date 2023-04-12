@@ -12,8 +12,6 @@ import com.example.chemp_podject.databinding.ItemFragmentBlockBinding
 class ItemListDialogFragment : BottomSheetDialogFragment() {
     private var _binding: ItemFragmentBlockBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     lateinit var block: BlockModel
     override fun onCreateView(

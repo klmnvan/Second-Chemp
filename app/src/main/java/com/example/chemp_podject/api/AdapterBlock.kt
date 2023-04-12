@@ -20,13 +20,6 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
         @SuppressLint("ResourceAsColor")
         fun bind(block: BlockModel, listener: Listener)
         {
-            /*if(Home.Home.listIndexOrder.contains(position)){
-                bindingBlock.ButtonInBlock.background = bindingBlock.root.context.getDrawable(R.drawable.button_blue_stroke_style)
-                bindingBlock.ButtonInBlock.setTextColor(Color.BLUE)
-                bindingBlock.ButtonInBlock.setText("Убрать")
-                listener.Order(block)
-                bool = false
-            }*/
             bindingBlock.TextNameBlock.text = block.name
             bindingBlock.TextTimeResult.text = block.time_result
             bindingBlock.TextPrice.text = block.price + " ₽"
@@ -34,7 +27,6 @@ class AdapterBlock(private val listener: Home): RecyclerView.Adapter<AdapterBloc
                 listener.Click(block)
             }
             bindingBlock.ButtonInBlock.setOnClickListener(){
-                //bindingHome!!.rowGoButton.visibility = View.VISIBLE
                 if(bool)
                 {
                     bindingBlock.ButtonInBlock.background = bindingBlock.root.context.getDrawable(R.drawable.button_blue_stroke_style)
