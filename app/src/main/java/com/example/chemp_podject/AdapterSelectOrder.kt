@@ -17,7 +17,7 @@ class AdapterSelectOrder: RecyclerView.Adapter<AdapterSelectOrder.OrderHolder>()
         fun bind(order: BlockModel){
             binding.textNamePrivivki.setText(order.name)
             binding.textPrice.setText(order.price + " ₽")
-            binding.checkBox.isChecked
+            binding.checkbox.isChecked
         }
     }
 

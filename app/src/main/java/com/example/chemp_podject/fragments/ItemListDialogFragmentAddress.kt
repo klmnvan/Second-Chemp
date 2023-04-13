@@ -29,23 +29,11 @@ class ItemListDialogFragmentAddress(private val listener: MakeOrder) : BottomShe
 
     fun putAddress(listener: Listener){
         binding.buttonConfirm.setOnClickListener(){
-            Toast.makeText(context, "произошел пипец", Toast.LENGTH_SHORT).show()
-            getActivity()?.getFragmentManager()?.popBackStack();
-            //эта штука уведомление на экран выводит
+            //getActivity()?.getFragmentManager()?.popBackStack();
             address = AddressModel(binding!!.inputTextAddress.text.toString(), binding!!.inputTextDolgota.text.toString(), binding!!.inputTextShirota.text.toString(),
                 binding!!.inputTextVisota.text.toString(), binding!!.inputTextKvartira.text.toString(), binding!!.inputTextPodyezd.text.toString(),
                 binding!!.inputTextEtazh.text.toString(), binding!!.inputTextDomophon.text.toString())
             listener.GetData(address)
-        /*
-            address.address = binding!!.inputTextDolgota.text.toString()
-            address.domophon = binding!!.inputTextDomophon.text.toString()
-            address.etazh = binding!!.inputTextEtazh.text.toString()
-            address.kvartira = binding!!.inputTextKvartira.text.toString()
-            address.podyezd = binding!!.inputTextPodyezd.text.toString()
-            address.vicota = binding!!.inputTextVisota.text.toString()
-            address.shirota = binding!!.inputTextShirota.text.toString()*/
-            /*listener.GetData(address)
-            dismiss()*/
         }
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
